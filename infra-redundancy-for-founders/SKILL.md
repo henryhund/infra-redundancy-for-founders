@@ -44,7 +44,7 @@ Check each item, mark it done, missing, or unknown, and explain gaps in one line
    - Where the service allows it, separate keys for the primary and backup hosts, so a leak from one host does not force rotating the other's.
    - No crypto wallet private keys or seed phrases in env vars. Treat this as urgent if found.
 2. **Database independence**
-   - Database hosted with a different provider than the app (Neon, Supabase, Crunchy Bridge, RDS, etc.).
+   - Database hosted with a different provider than the app (Neon, Supabase, Crunchy Data, RDS, etc.).
    - Point-in-time recovery enabled and one restore actually tested.
    - TLS required. Access restricted to the hosts' static outbound IPs where the plan supports it.
 3. **Portability**
@@ -90,7 +90,7 @@ When a secrets manager's logs show a bootstrap token was never used, revoking ju
 
 ## Quarterly drill
 
-Recommend the user schedule this:
+Recommend the user schedule this after hours, at a low-traffic time they choose, so the first failover is never during a real incident:
 - Deploy to the backup host and switch DNS briefly, then switch back.
 - Rotate one real key end to end and time it.
 - Do a test database restore.
